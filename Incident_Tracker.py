@@ -16,7 +16,7 @@ connect = udaExec.connect(method="odbc", system=host, username=username, passwor
 
 
 #Make a Jira Connection
-jira = JIRA(basic_auth=(config['Jira']['user'], config['Jira']['passwd']), options={'server': 'https://jira.kpn.org','verify':False})
+jira = JIRA(basic_auth=(config['Jira']['user'], config['Jira']['passwd']), options={'server': 'https://jira.xxx.xxx','verify':False})
 
 issues_str = ''
 type_of_issues_to_pull = [
@@ -44,4 +44,4 @@ for sprint in sprints:
         issues = sprint_issues(jira, board.id, sprint.id)
         for issue in issues:
             print issue, issue.statusName, issue.summary
-            connect.execute("INSERT INTO " + config['Teradata']['Env'] + "_TEC_EDW.CURRENT_SPRINT VALUES('" + str(issue) + "','" + str(issue.statusName) + "');")
+            connect.execute("INSERT INTO " + config['Teradata']['Env'] + "DB_Name.Table_Name VALUES('" + str(issue) + "','" + str(issue.statusName) + "');")
